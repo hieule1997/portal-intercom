@@ -1,0 +1,129 @@
+{% extends 'client/base.html' %}
+{% load staticfiles %}
+{% block title %} Tạo VM {% endblock %}
+{% block css %} {% endblock %}
+{% block content %}
+<div id="container-itself" style="min-height:940px;">
+    <div id="content-itself">
+        <div class="container-fluid">
+            <style>
+                .tooltip-inner{
+                    max-width: 400px !important;
+                    text-align: left;
+                }
+                .btn.disabled_opacity{
+                    opacity: 0.3;
+                }
+                .btn-group .btn{
+                    margin-left: 0px !important;
+                }
+            </style>
+            <h3 class="label-header">
+                <span class="border-label">Máy ảo của tôi</span>
+                <div class="col-lg-4 col-md-5 searchvmbox">
+                    <div class="input-group">
+                        <input type="text" id="smart_search" placeholder="Tìm kiếm..." class="form-control">
+                        <span style="vertical-align: top;" class="input-group-btn" onclick="search()">
+                            <button type="button" class="btn btn-gradient btn-home-search">Tìm kiếm</button>
+                        </span>
+                    </div>
+                </div>
+            </h3>
+            <div style="clear:both"></div>
+            <div class="table-responsive" id="vms_container" style="width:100%;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th class="hideonmobile">Hệ điều hành</th>
+                            <th>Main IP</th>
+                            <th class="hideonmobile">Datacenter</th>
+                            <th class="hideonmobile" style="width:100px">Trạng thái</th>
+                            <th class="hideonmobile">Ngày tạo</th>
+                            <th class="hideonmobile" style="width: 170px;">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="maintable">
+                        <tr>
+                            <td colspan="7">
+                                No server! <a href="deploy">Deploy new now</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="maintable_paging"></div>
+            </div><a class="btn btn-success" href="deploy" style="margin-top: 0px;">Tạo máy ảo mới</a>
+            <div class="box icons text-center">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-4 col-lg-2 one-icon">
+                        <a href="snapshot">
+                            <img src="{% static 'images/icon-snapshot.png'%}" alt="icon" class="img-responsive center-block">
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-lg-2 one-icon">
+                        <a href="snapshot">
+                            <img src="{% static 'images/icon-volume.png'%}" alt="icon" class="img-responsive center-block">
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-lg-2 one-icon">
+                        <a href="snapshot">
+                            <img src="{% static 'images/icon-backup.png'%}" alt="icon" class="img-responsive center-block">
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-lg-2 one-icon">
+                        <a href="snapshot">
+                            <img src="{% static 'images/icon-log.png'%}" alt="icon" class="img-responsive center-block">
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-lg-2 one-icon">
+                        <a href="snapshot">
+                            <img src="{% static 'images/icon-security.png'%}" alt="icon" class="img-responsive center-block">
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <h3 style="margin-top: 30px;text-transform: uppercase;font-weight: bold;"><span class="border-label">Tin tức</span></h3>
+            <div class="box news" id="news">
+                <div class="owl-carousel" id="news-slider">
+                    <div class="one-news">
+                        <h4><a>Thông báo nâng cấp Network tại DC Hồ Chí Minh</a></h4>
+                        <p class="date">2018-02-07 11:58:00</p>
+                        <p class="news-text"></p>
+                        <p>Nhằm mục đích nâng cao chất lượng hệ thống Network, nâng cao năng lực cung cấp và tăng cường khả năng đáp ứng cao (High Availability) của toàn bộ hệ thống CMC Cloud Server đặt tại DC Hồ Chí Minh, chúng tôi sẽ tiến hành nâng cấp Uplink của hệ thống như sau:</p>
+                        <ul>
+                            <li><strong>Thời gian tiến hành</strong>: 23h ngày thứ Bảy – 10/02/2018</li>
+                            <li><strong>Downtime Network</strong>: 2 phút (120 giây)</li>
+                            <li><strong>Phạm vi ảnh hưởng</strong>: Toàn bộ hệ thống bao gồm tất cả các VMs nằm trên DC tại Hồ Chí Minh. Các VM, Server.. vẫn vận hành bình thường tuy nhiên không có kết nối internet ra ngoài.</li>
+                        </ul>Xem thêm chi tiết <a href="">tại đây</a>:&nbsp;<a href="">Nâng cấp hệ thống Network tại DC HCM ngày 10/02/2018</a>
+                    </div>
+                    <div class="one-news">
+                        <h4><a>Thông báo nâng cấp Network tại DC Hồ Chí Minh</a></h4>
+                        <p class="date">2018-02-07 11:58:00</p>
+                        <p class="news-text"></p>
+                        <p>Nhằm mục đích nâng cao chất lượng hệ thống Network, nâng cao năng lực cung cấp và tăng cường khả năng đáp ứng cao (High Availability) của toàn bộ hệ thống CMC Cloud Server đặt tại DC Hồ Chí Minh, chúng tôi sẽ tiến hành nâng cấp Uplink của hệ thống như sau:</p>
+                        <ul>
+                            <li><strong>Thời gian tiến hành</strong>: 23h ngày thứ Bảy – 10/02/2018</li>
+                            <li><strong>Downtime Network</strong>: 2 phút (120 giây)</li>
+                            <li><strong>Phạm vi ảnh hưởng</strong>: Toàn bộ hệ thống bao gồm tất cả các VMs nằm trên DC tại Hồ Chí Minh. Các VM, Server.. vẫn vận hành bình thường tuy nhiên không có kết nối internet ra ngoài.</li>
+                        </ul>Xem thêm chi tiết <a href="">tại đây</a>:&nbsp;<a href="">Nâng cấp hệ thống Network tại DC HCM ngày 10/02/2018</a>
+                    </div>
+                    <div class="one-news">
+                        <h4><a>Thông báo nâng cấp Network tại DC Hồ Chí Minh</a></h4>
+                        <p class="date">2018-02-07 11:58:00</p>
+                        <p class="news-text"></p>
+                        <p>Nhằm mục đích nâng cao chất lượng hệ thống Network, nâng cao năng lực cung cấp và tăng cường khả năng đáp ứng cao (High Availability) của toàn bộ hệ thống CMC Cloud Server đặt tại DC Hồ Chí Minh, chúng tôi sẽ tiến hành nâng cấp Uplink của hệ thống như sau:</p>
+                        <ul>
+                            <li><strong>Thời gian tiến hành</strong>: 23h ngày thứ Bảy – 10/02/2018</li>
+                            <li><strong>Downtime Network</strong>: 2 phút (120 giây)</li>
+                            <li><strong>Phạm vi ảnh hưởng</strong>: Toàn bộ hệ thống bao gồm tất cả các VMs nằm trên DC tại Hồ Chí Minh. Các VM, Server.. vẫn vận hành bình thường tuy nhiên không có kết nối internet ra ngoài.</li>
+                        </ul>Xem thêm chi tiết <a href="">tại đây</a>:&nbsp;<a href="">Nâng cấp hệ thống Network tại DC HCM ngày 10/02/2018</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+{% endblock %}
+{% block js %} {% endblock %}
