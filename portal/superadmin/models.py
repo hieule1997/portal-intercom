@@ -65,22 +65,6 @@ class MyUser(AbstractBaseUser):
     def __str__(self):
         return self.email
 
-    def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
-        return True
-
-    def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
-        return True
-
-    @property
-    def is_staff(self):
-        "Is the user a member of staff?"
-        # Simplest possible answer: All admins are staff
-        return self.is_admin
-
     def check_expired(self):
         time = self.token_expired - timezone.datetime.now(timezone.utc)
         return time > timezone.timedelta(seconds=0)
@@ -93,45 +77,41 @@ class Server(models.Model):
     ram = models.IntegerField()
     vcpus = models.IntegerField()
     disk = models.IntegerField()
-    owner = models.ForeignKey('Myuser', models.CASCADE, db_column='owner')
+    owner = models.ForeignKey('Myuser', models.CASCADE)
     created = models.CharField(max_length=255, null=True)
     i_d = models.CharField(max_length=255, null=True)
 
     class Meta:
-        managed = True
         db_table = 'serverVM'
 
 class Sshkeys(models.Model):
-    ops = models.ForeignKey('Ops', models.CASCADE, db_column='ops')
+    ops = models.ForeignKey('Ops', models.CASCADE)
     name = models.CharField(max_length=255)
-    owner = models.ForeignKey('Myuser', models.CASCADE, db_column='owner')
+    owner = models.ForeignKey('Myuser', models.CASCADE)
 
     class Meta:
-        managed = True
         db_table = 'sshkeys'
 
 class Images(models.Model):
-    ops = models.ForeignKey('Ops', models.CASCADE, db_column='ops')
+    ops = models.ForeignKey('Ops', models.CASCADE)
     name = models.CharField(max_length=255)
     os = models.CharField(max_length=255)
     i_d = models.CharField(max_length=255)
 
     class Meta:
-        managed = True
         db_table = 'images'
 
 class Snapshot(models.Model):
-    ops = models.ForeignKey('Ops', models.CASCADE, db_column='ops')
+    ops = models.ForeignKey('Ops', models.CASCADE)
     name = models.CharField(max_length=255)
-    owner = models.ForeignKey('Myuser', models.CASCADE, db_column='owner')
+    owner = models.ForeignKey('Myuser', models.CASCADE)
     i_d = models.CharField(max_length=255)
 
     class Meta:
-        managed = True
         db_table = 'snapshot'
 
 class Networks(models.Model):
-    owner = models.ForeignKey('Myuser', models.CASCADE, db_column='owner')
+    owner = models.ForeignKey('Myuser', models.CASCADE)
     name = models.CharField(max_length=255)
     subnets_associated = models.CharField(max_length=255)
     shared = models.IntegerField()
@@ -141,7 +121,6 @@ class Networks(models.Model):
 
 
     class Meta:
-        managed = True
         db_table = 'client_networks'
 
 class Oders(models.Model):
@@ -150,11 +129,10 @@ class Oders(models.Model):
     ip = models.CharField(max_length=255,null=True)
     price = models.CharField(max_length=255)
     status = models.IntegerField(default=1)
-    owner = models.ForeignKey('Myuser', models.CASCADE, db_column='owner')
+    owner = models.ForeignKey('Myuser', models.CASCADE)
     created = models.DateTimeField()
 
     class Meta:
-        managed = True
         db_table = 'oders'
         
 class Ops(models.Model):
@@ -167,5 +145,4 @@ class Ops(models.Model):
     projectdomain = models.CharField(max_length=255)
 
     class Meta:
-        managed = True
         db_table = 'ops'

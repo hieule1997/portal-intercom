@@ -1,5 +1,48 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.core.validators import validate_email
+import binascii, os
+from django.contrib.auth.hashers import check_password
+from superadmin.models import MyUser
 
+# Form xác thực
+class SignupForm(UserCreationForm):
+    email = forms.EmailField(max_length=200)
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2')
+
+def get_user(usname):
+    try:
+        return MyUser.objects.get(username=usname)
+    except:
+        return None
+
+def get_user_email(email1):
+    try:
+        return MyUser.objects.get(email=email1)
+    except:
+        return None
+
+
+def get_users_email(email1):
+    try:
+        return MyUser.objects.get(email=email1)
+    except:
+        return None
+
+def active(user):
+    if user.is_active == False:
+        return False
+    else:
+        return True
+
+def get_user_email(email1):
+    try:
+        return MyUser.objects.get(email=email1)
+    except:
+        return None
 
 class UserForm(forms.Form):
     fullname = forms.CharField()
