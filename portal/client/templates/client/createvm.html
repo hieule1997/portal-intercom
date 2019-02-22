@@ -126,4 +126,11 @@
 </div>
 <div class="clearfix"></div>
 {% endblock %}
-{% block js %} {% endblock %}
+{% block js %}
+    <script>
+        $(document).ready(function () {
+            $('#left-menu').find('li').removeClass('selected')
+            $('.vm').addClass('selected')
+        })
+    </script>
+{% endblock %}

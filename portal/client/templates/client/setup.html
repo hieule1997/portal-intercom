@@ -463,7 +463,7 @@
                             <div>
                                 <b><span class="price">Chỗ này chưa biết công thức tính sao !</span></b>
                             </div>
-                            <i style="font-size: 10px: clear: both; font-weight: normal">Giá trên đã bao gồm 10% thuế VAT</i>
+                            <i style="font-size: 10px; clear: both; font-weight: normal">Giá trên đã bao gồm 10% thuế VAT</i>
                         </div>
                     </div>
                 </div>
@@ -823,4 +823,10 @@
                 }
             });
     </script> 
+    <script>
+        $(document).ready(function () {
+            $('#left-menu').find('li').removeClass('selected')
+            $('.setup').addClass('selected')
+        })
+    </script>
 {% endblock %}

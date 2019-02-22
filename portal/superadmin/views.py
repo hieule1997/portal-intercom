@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 def home(request):
     return render(request,'home.html')
 
-# def user_login(request):
+def user_login(request):
     user = request.user
     mess_register_ok = 'Hãy kiểm tra email của bạn để hoàn tất đăng ký'
     if user.is_authenticated  and user.is_adminkvm:

@@ -49,8 +49,8 @@
             <div id="welcome">
                 <span><span class="menu-trigger"><span style="font-weight:normal">Chào mừng,</span>Snake</span></span>
                 <div class="dropdown-menu-absolute">
-                    <a href="">Tickets của tôi</a> <a href="">Hóa đơn chưa thanh toán</a> <a href="">Thiết lập tài
-                        khoản</a> <a href="">Ðăng xuất</a>
+                    <a href="">Tickets của tôi</a> <a href="">Hóa đơn chưa thanh toán</a> <a href="/checkout#account_settings">Thiết lập tài
+                        khoản</a> <a href="{% url 'client:logout' %}">Ðăng xuất</a>
                 </div>
                 <div class="sprite triangle-os" style="font-size: 11px;"></div>
             </div>
@@ -79,18 +79,18 @@
                     <a class="lang" href="" style="display: inline;color: #4c4d4f;" title="Vietnamese">VN</a> | <a
                         class="lang" href="" style="padding-left: 0px;display: inline;color: #4c4d4f;" title="English">EN</a>
                 </li>
-                <li class="selected">
+                <li class="vm selected">
                     <a href="{% url 'client:home' %}"><img alt="#" src="{% static 'images/VM.svg' %}"></a> <a href="{% url 'client:home' %}">VM</a>
                 </li>
-                <li>
+                <li class="setup">
                     <a href="{% url 'client:setup' %}"><img alt="#" src="{% static 'images/Deploy.svg' %}"></a> <a href="{% url 'client:setup' %}">Tạo mới</a>
                 </li>
-                <li>
-                    <a href=""><img alt="#" src="{% static 'images/VPC.svg' %}"></a> <a href="vpc">VPC</a>
+                <li class="vpc">
+                    <a href=""><img alt="#" src="{% static 'images/VPC.svg' %}"></a> <a href="">VPC</a>
                 </li>
-                <li>
-                    <a href="{% url 'client:checkout' %}"><img alt="#" src="{% static 'images/Billing.svg' %}"></a> <a href="{% url 'client:checkout' %}">Thanh
-                        toán</a>
+                <li class="checkout">
+                    <a href="{% url 'client:checkout' %}"><img alt="#" src="{% static 'images/Billing.svg' %}"></a> 
+                    <a href="{% url 'client:checkout' %}">Thanh toán</a>
                 </li>
             </ul>
         </div>
@@ -170,6 +170,13 @@
                 $(this).addClass('active');
                 return false;
             });
+
+            // $('#left-menu a').click(function (e) {
+            //     e.preventDefault()
+            //     $("#left-menu li").removeClass('selected')
+            //     console.log($(this).parent('li'))
+            //     $(this).parent('li').addClass('selected')
+            // })
         });
     </script>
 </body>
