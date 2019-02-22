@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="css/bootstrap4.min.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/responsive.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-2.1.4.min.js" type="text/javascript"></script> 
+</head>
+<body style="cursor: auto;">
+    <!-- mobile menu -->
+    <div class="mobilemenu showonmobile">
+        <div class="container" style="text-align: center">
+            <button class="expand-menu" onclick="$('#left-menu').toggle()" type="button"><span></span></button>
+            <div class="logo">
+                <a href="/"><img src="images/logo.png" style="height: 50px"></a>
+            </div>
+            <div class="box-admin">
+                <ul>
+                    <li>
+                        <a onclick="$('.popmenu').toggle()"><i class="glyphicon glyphicon-user"></i></a>
+                        <div class="popmenu popmenu-right">
+                            <ul>
+                                <li>
+                                    <a href="" style="border-bottom: 1px solid #e5e5e5;"><i class="fa fa-sign-in"></i>Logout</a>
+                                </li>
+                                <li>
+                                    <a href=""><i class="fa fa-edit"></i>Hoá don</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end -->
+
+    <!-- header -->
+    <div id="header">
+        <div id="lower-header">
+            <a href="/" style="float: left;">
+            	<div style="margin-top: 5px;padding-left: 135px;"><img src="images/logo.png"></div>
+        	</a>
+            <div id="welcome">
+                <span><img src="images/icon-users.png" class="img-responsive user-icon"><span class="menu-trigger"><span style="font-weight:normal">Chào mừng,</span>Snake</span></span>
+                <div class="dropdown-menu-absolute">
+                    <a href="">Tickets của tôi</a>
+                    <a href="">Hóa đơn chưa thanh toán</a>
+                    <a href="">Thiết lập tài khoản</a>
+                    <a href="">Ðăng xuất</a>
+                </div>
+                <div class="sprite triangle-os" style="font-size: 11px;"></div>
+            </div>
+            <div id="upper-header">
+                <ul>
+                    <li>
+                        <a href=""><img src="images/icon-home.png" class="img-responsive"> TRANG CHỦ</a>
+                    </li>
+                    <li>
+                        <a href=""><img src="images/icon-notification.png" class="img-responsive"> TRỢ GIÚP VÀ HỖ TRỢ</a>
+                    </li>
+                    <li>
+                        <a href="tel:19002010"><img src="images/icon-hotline.png" class="img-responsive"> Hotline 24/7: 1900.2010</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!-- end -->
+
+    <!-- body -->
+    <div id="content" style="position:relative">
+        <div id="left-menu" style="margin-right: 0px; padding-right: 0px;position:absolute;top:-60px;bottom:0">
+            <ul>
+                <li style="height: 60px;line-height: 30px;background-color: black;">
+                    <a class="lang" href="" style="display: inline;color: #fff;" title="Vietnamese">VN</a> | <a class="lang" href="" style="padding-left: 0px;display: inline;color: #fff;" title="English">EN</a>
+                </li>
+                <li class="selected">
+                    <a href=""><img alt="#" src="images/VM.svg"></a> <a href="index">VM</a>
+                </li>
+                <li>
+                    <a href=""><img alt="#" src="images/Deploy.svg"></a> <a href="deploy">Tạo mới</a>
+                </li>
+                <li>
+                    <a href=""><img alt="#" src="images/VPC.svg"></a> <a href="vpc">VPC</a>
+                </li>
+                <li>
+                    <a href=""><img alt="#" src="images/Billing.svg"></a> <a href="account-settings">Thanh toán</a>
+                </li>
+            </ul>
+        </div>
+        <div id="container-itself" style="min-height:940px;">
+            <div id="content-itself">
+                <div class="container-fluid">
+                    <div id="top-nav" style="width:100%">
+                        <a class="active" href="">Thanh toán</a>
+                        <a class="" href="">Thông tin thanh toán</a>
+                        <a class="" href="">Lịch sử giao dịch</a>
+                        <a class="" href="">Thiết lập tài khoản</a>
+                        <a class="" href="">Bảo mật</a>
+                    </div>
+                    <script type="text/javascript">
+                        $( document ).ready(function() {
+                            $('#top-nav a').click(function (e) {
+                                e.preventDefault();
+                                $(this).tab('show');
+                                $('#top-nav a').removeClass('active');
+                                $(this).addClass('active');
+                                return false;
+                            });
+                        });
+                    </script> 
+                    <div id="add_transaction">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <h3 style="margin-top: 0px">Nạp tiền vào tài khoản</h3>
+                                <div class="input-group custom-container">
+                                    <div class="input-group-addon">
+                                        VND
+                                    </div>
+                                    <input class="amountcustom" name="amountcustom" placeholder="Nhập số tiền" size="12" style="border-radius: 0px 3px 3px 0px; line-height: 32px; width: 150px;" type="text" value="">
+                                </div><a class="btn btn-primary" id="add_transaction" onclick="add_transaction()" style="line-height: 24px;">Thêm thanh toán</a>
+                            </div>
+                        </form>
+                    </div>
+                    <h3 style="margin-top: 0px">Thông tin thanh toán</h3>
+                    <table class="table" id="billing-info">
+                        <tbody>
+                            <tr>
+                                <th>Dư nợ</th>
+                                <th>Số tiền hoá đơn đã thanh toán</th>
+                                <th>Tiền trong tài khoản</th>
+                            </tr>
+                            <tr>
+                                <td><b>0</b></td>
+                                <td>0</td>
+                                <td class="green-font">0 (VND)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3>Mã voucher</h3>
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-12">
+                                <label>Nhập mã voucher:</label>
+                                <input id="voucher_code" name="voucher_code" style="text-transform: uppercase; height: 42px; line-height: 32px;background: #081422;border-color: #777e86;color:white" type="text" value="">
+                                <button class="btn btn-success" id="add_voucher" onclick="add_voucher()">Áp dụng voucher</button>
+                                <div style="clear: both"></div>
+                                <p style="padding: 10px 0;">Nhập mã CMCCLOUD300K nhận ngay 300.000 VNĐ vào tài khoản</p>
+                                <div style="clear: both"></div>
+                                <p style="padding: 10px 0;">* Mỗi tài khoản chỉ sử dung được 1 lần duy nhất</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Lịch sử hóa đơn</h3>
+                    <div class="fc-header-right" id="status_selector" style="padding-bottom: 15px;">
+                        <span class="label label-success arrowed-in-right arrowed pointer lbstatus" style="font-size:14px">Tất cả <span id="invoice_total">(0)</span></span> <span class="label label-default arrowed-in-right arrowed pointer lbstatus" style="font-size:14px">Paid <span id="invoice_paid">(0)</span></span> <span class="label label-default arrowed-in-right arrowed pointer lbstatus" style="font-size:14px">Chưa thanh toán <span id="invoice_unpaid">(0)</span></span> <span class="label label-default arrowed-in-right arrowed pointer lbstatus" style="font-size:14px">Quá hạn <span id="invoice_duedate">(0)</span></span>
+                        <div style="float:right">
+                            <span style="color: white">Kết quả mỗi trang</span>
+                            <select class="form-control" style="width: 95px; float: right; padding-top: 0px; padding-bottom: 0px; height: 28px; margin-left: 5px;">
+                                <option value="10">
+                                    10
+                                </option>
+                                <option value="25">
+                                    25
+                                </option>
+                                <option value="50">
+                                    50
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="clear: both"></div>
+                    <div class="table-container" id="invoices">
+                        <table class="table" style="border-bottom-width: 1px; margin-bottom: 10px;">
+                            <tbody>
+                                <tr>
+                                    <th><input type="checkbox"></th>
+                                    <th>Số hóa đơn</th>
+                                    <th>Số tiền</th>
+                                    <th>Ngày tạo hóa đơn</th>
+                                    <th>Ngày hết hạn</th>
+                                    <th>Ngày thanh toán</th>
+                                    <th>Tình trạng hóa đơn</th>
+                                    <th>Xem / Tải về</th>
+                                </tr>
+                            </tbody>
+                            <tbody id="invoices_history">
+                                <tr>
+                                    <td colspan="10">No invoice</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="invoices_history_paging"></div>
+                </div>
+                <div class="hide ng-scope" id="account_settings">
+                    <h3>Thiết lập tài khoản</h3>
+                    <div class="box-header">
+                        Dữ liệu cá nhân
+                    </div>
+                    <form action="" class="form-horizontal ng-pristine ng-valid" id="updateInfoForm" name="updateInfoForm">
+                        <div class="box white billing-box">
+                            <div class="active">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>Họ:</label>
+                                        <input name="firstname" type="text" value="Cloud">
+                                        <label>Tên:</label> <input name="lastname" type="text" value="User">
+                                        <label>Địa chỉ email:</label>
+                                        <input class="disabled" disabled id="email" name="email" style="background-color: #F7F7F9" type="text" value="sonnv@intercom.vn">
+                                        <label>Số điện thoại:</label>
+                                        <input name="phonenumber" type="text" value="84385522060"> <label>Công ty (không bắt buộc):</label> <input name="companyname" type="text" value=""> <label>Địa chỉ đăng kí kinh doanh (không bắt buộc):</label> <input name="dia_chi_dkkd" type="text" value=""> <label>Tên giám đốc (không bắt buộc):</label> <input name="ten_giam_doc" type="text" value=""> <label>Mã số thuế (không bắt buộc):</label> <input name="ma_so_thue" type="text" value="">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Địa chỉ:</label>
+                                        <input name="address1" type="text" value="Ha Noi">
+                                        <label>Thành phố:</label>
+                                        <input name="city" type="text" value="Ha Noi">
+                                        <label>Quốc gia:</label>
+                                        <select class="crs-country" data-crs-loaded="true" data-default-value="VN" data-region-id="region" data-value="shortcode" name="country">
+                                            <option value="">
+                                                Select country
+                                            </option>
+                                            <option value="AF">
+                                                Afghanistan
+                                            </option>
+                                        </select>
+                                        <label>Tiểu bang / Tỉnh:</label>
+                                        <select data-default-value="Ha Noi" id="region" name="state">
+                                            <option value="">
+                                                Select region
+                                            </option>
+                                            <option value="Đồng Nai">
+                                                Đồng Nai
+                                            </option>
+                                            <option value="Đồng Tháp">
+                                                Đồng Tháp
+                                            </option>
+                                        </select>
+                                        <label>Múi giờ:</label>
+                                        <select class="form-control" id="timezone" name="timezone">
+                                            <option value="Etc/GMT+12|-12:00">
+                                                (GTM -12:00 ) Etc/GMT+12
+                                            </option>
+                                            <option value="Etc/GMT+11|-11:00">
+                                                (GTM -11:00 ) Etc/GMT+11
+                                            </option>
+                                        </select> <label>Địa chỉ 2:</label> <input name="address2" type="text" value=""> <label>Mã bưu điện:</label> <input name="postcode" type="text" value="100000">
+                                    </div>
+                                </div>
+                                <div id="delimeter2"></div>
+                                <div class="text-left">
+                                    <button class="btn btn-success" id="btUpdate" type="submit">Cập nhật</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <h3>Users</h3>
+                    <div style="clear: both"></div>
+                    <div class="table-container ng-scope">
+                        <table class="table table-black" style="border-bottom-width: 1px; margin-bottom: 10px;">
+                            <tbody>
+                                <tr>
+                                    <th colspan="2">Email</th>
+                                    <th style="width: 100px">Thao tác</th>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td><input class="ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="email" placeholder="Email" required="" style="color: black; line-height: 28px" type="text"></td>
+                                    <td><input class="ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="password" placeholder="Password" required="" style="color: black; line-height: 30px" type="password"></td>
+                                    <td class="center">
+                                        <a class="btn btn-success" style="margin: 0">Add User</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row lowered-marign">
+                        <div class="col-sm-6">
+                            <div class="box-header text-center with-margin">
+                                Đổi mật khẩu
+                            </div>
+                            <div class="box white billing-box text-center">
+                                <div class="active">
+                                    <label>Mật khẩu hiện tại:</label> <input id="current_password" type="password" value=""> <label>Mật khẩu mới:</label> <input id="new_password" type="password" value=""> <label>Xác nhận mật khẩu mới:</label> <input id="new_password2" type="password" value="">
+                                    <div id="delimeter2"></div>
+                                    <div class="text-center">
+                                        <a class="btn btn-success" id="btChangePass">Đổi mật khẩu</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="box-header with-margin">
+                                Notifications
+                            </div>
+                            <div class="box white billing-box">
+                                <div class="active ng-scope">
+                                    <a href="#">Nhận email thông báo khi CPU vượt quá ngưỡng định trước</a> <label><input class="ng-pristine ng-untouched ng-valid ng-empty" type="checkbox"> Nhận email cảnh báo CPU</label>
+                                    <div class="ng-hide" style="margin-top: 20px;">
+                                        <label>Ngưỡng cảnh báo (%):</label> <input class="ng-pristine ng-untouched ng-valid ng-empty" type="text"> <label>Thời gian vượt ngưỡng (phút):</label> <input class="ng-pristine ng-untouched ng-valid ng-empty" type="text"> <label>Danh sách email nhận cảnh báo (cách nhau bởi dấu phẩy):</label> <input class="ng-pristine ng-untouched ng-valid ng-empty" type="text">
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="btn btn-success">Lưu</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="box-header text-center with-margin">
+                                Thông tin API
+                            </div>
+                            <div class="box white billing-box text-center">
+                                <div class="active">
+                                    <div id="panel_disabled" style="">
+                                        <p style="margin-bottom: 15px;">API hiện đang bị vô hiệu hóa trên tài khoản của bạn.</p>
+                                        <div class="text-center">
+                                            <a class="btn btn-success" onclick="xajax_enable_api()">Cho phép sử dụng API</a>
+                                        </div>
+                                    </div>
+                                    <div id="panel_enabled" style="color: white;display: none">
+                                        <p style="margin-bottom: 15px;">API truy cập hiện đang được kích hoạt trên tài khoản của bạn.</p>API Key: <span class="label label-default" id="api_key"></span>
+                                        <div class="text-center">
+                                            <a class="btn btn-success" onclick="disable_api()">Vô hiệu hóa API</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end -->
+    
+    <!-- footer -->
+    <div id="footer">
+        <div id="copy">
+            <span>© 2018 CMC Cloud - Công ty Cổ phần Hạ tầng Viễn thông CMC<br>
+            Giấy CNĐKDN: 0102900049 - Ngày cấp: 05/09/2008, sửa đổi lần thứ 12 ngày 09/10/2017<br>
+            Cơ quan cấp: Phòng đăng ký kinh doanh - Sở kế hoạch và đầu tư Thành phố Hà Nội</span>
+        </div>
+    </div>
+    <!-- end -->
+    <style>
+        .login-page{
+            background-color: white;
+        }
+    </style>
+    <script src="js/bootstrap.min.js" type="text/javascript">
+    </script> 
+    <script src="js/validate-bootstrap.jquery.js" type="text/javascript">
+    </script>
+</body>
+</html>

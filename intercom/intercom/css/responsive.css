@@ -1,0 +1,111 @@
+
+/*@media all and (min-width: 1600px) {
+.one-icon .item-bg {
+    background-color: #0b3082;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+    z-index: 10;
+}*/
+
+@media all and (max-width: 1199px) {
+	.one-icon:before {
+		content: none;
+	}
+	.one-icon .item-bg {
+	    border-radius: 0;
+	    position: relative;
+	    padding: 50px;
+	}
+	.one-icon {
+		border: 0;
+	}
+	.one-icon .item-bg {
+		padding: 20px;
+	}
+}
+
+@media all and (max-width: 768px) {
+    .one-icon .sprite4 {
+        width: 50px;
+        height: 50px;
+    }
+	#news_paging {
+	    padding: 15px 20px;
+	}
+}
+@media all and (max-width: 480px) {
+    .one-icon .sprite4 {
+        width: 70px;
+        height: 70px;
+    }
+   	.one-icon {
+    	margin-bottom: 0;
+	}
+}
+@media all and (max-width: 400px) {
+    .one-icon .sprite4 {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media all and (min-width: 992px) {
+    .box.icons {
+        position: relative;
+    }
+    .box.icons:before {
+        content: "";
+        background-color: #0f72ff;
+        height: 12px;
+        width: 12px;
+        position: absolute;
+        top: 50%;
+        transform:translateY(-50%);
+        left: 0;
+        z-index: 10;
+    }
+    .box.icons:after {
+        content: "";
+        background-color: #0f72ff;
+        height: 12px;
+        width: 12px;
+        position: absolute;
+        top: 50%;
+        transform:translateY(-50%);
+        right: 0;
+        z-index: 10;
+    }
+    .one-icon {
+        padding: 10px 30px;
+        width: 20%;
+    }
+    .one-icon:before {
+        content: "";
+        background-color: #0f72ff;
+        height: 2px;
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        transform:translateY(-50%);
+        left: 0;
+        right: 0;
+        z-index: 10;
+    }
+}
+
+@media all and (min-width: 1200px) {
+
+}
+@media all and (min-width: 1400px) {
+    .box.news{
+        margin: 0 -35px;
+    }
+    .one-news {
+        padding: 0 35px;
+    }
+}
