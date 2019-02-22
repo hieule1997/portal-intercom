@@ -70,7 +70,7 @@ TEMPLATES = [
         },
     },
 ]
-
+AUTH_USER_MODEL = 'superadmin.MyUser'
 WSGI_APPLICATION = 'portal.wsgi.application'
 CHANNEL_LAYERS = {
     'default': {
@@ -169,9 +169,9 @@ PRICE_VCPUS = 60000
 PRICE_DISK_HDD = 3000
 PRICE_DISK_SSD = 5000
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'hoangduccuong97@gmail.com'
-EMAIL_HOST_PASSWORD = 'Duccuong97'
-EMAIL_PORT = 587
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'hoangduccuong97@gmail.com'
+# EMAIL_HOST_PASSWORD = 'Duccuong97'
+# EMAIL_PORT = 587

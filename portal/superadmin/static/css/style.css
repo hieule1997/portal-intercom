@@ -315,6 +315,7 @@ body{
     background: #252c3f;
     display: none;
     padding-top: 0px;
+    z-index :9999;
     white-space: nowrap;
 }
 #welcome:hover {

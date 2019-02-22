@@ -46,13 +46,13 @@
                     <tbody id="maintable">
                         <tr>
                             <td colspan="7">
-                                No server! <a href="deploy">Deploy new now</a>
+                                No server! <a href="{% url 'client:setup' %}">Deploy new now</a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <div id="maintable_paging"></div>
-            </div><a class="btn btn-success" href="deploy" style="margin-top: 0px;">Tạo máy ảo mới</a>
+            </div><a class="btn btn-success" href="{% url 'client:setup' %}" style="margin-top: 0px;">Tạo máy ảo mới</a>
             <div class="box icons text-center">
                 <div class="row">
                     <div class="col-xs-6 col-sm-4 col-lg-2 one-icon">

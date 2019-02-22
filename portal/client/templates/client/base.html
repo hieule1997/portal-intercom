@@ -43,11 +43,11 @@
     <!-- header -->
     <div id="header">
         <div id="lower-header">
-            <a href="/" style="float: left;">
+            <a href="{% url 'client:home' %}" style="float: left;">
                 <div style="margin-top: 5px;padding-left: 135px;"><img src="{% static 'images/logo.png' %}"></div>
             </a>
             <div id="welcome">
-                <span><span class="menu-trigger"><span style="font-weight:normal">Chào mừng,</span>Snake</span></span>
+                <span><span class="menu-trigger"><span style="font-weight:normal">Chào mừng,</span>{{ content }}</span></span>
                 <div class="dropdown-menu-absolute">
                     <a href="">Tickets của tôi</a> <a href="">Hóa đơn chưa thanh toán</a> <a href="/checkout#account_settings">Thiết lập tài
                         khoản</a> <a href="{% url 'client:logout' %}">Ðăng xuất</a>

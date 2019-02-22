@@ -43,6 +43,22 @@ def get_user_email(email1):
         return MyUser.objects.get(email=email1)
     except:
         return None
+def authenticate(username=None, password=None):
+    	# u = get_user(username)
+    if get_user(username):
+        u = get_user(username)
+        login_valid = (u.username == username)
+        pwd_valid = check_password(password, u.password)
+        if login_valid and pwd_valid:
+            try:
+                user = MyUser.objects.get(username=username)
+            except:
+                return None
+            return user
+        return None
+    else:
+        return None
+
 
 class UserForm(forms.Form):
     fullname = forms.CharField()
@@ -65,26 +81,26 @@ class UserForm(forms.Form):
             if password == password2 and password:
                 return password2
             else:
-                raise forms.ValidationError("Re-password doesn't match!")
-        raise forms.ValidationError("Password is invalid!")
+                raise forms.ValidationError("Mật khẩu không trùng khớp !")
+        raise forms.ValidationError("Mật khẩu không hợp lệ!")
 
 
     # check xem user name đã tồn tại hay chưa
     def clean_username(self):
         username =  self.cleaned_data['username']
         if get_user(username) is not None:
-            raise forms.ValidationError("Username was existed!")
+            raise forms.ValidationError("Tên đăng nhập đã tồn tại!")
         return username
 
     # check email có đúng định dạng không, đã tồn tại chưa
     def clean_email(self):
         email = self.cleaned_data['email']
         if get_users_email(email) is not None:
-            raise forms.ValidationError("Email was registered!")
+            raise forms.ValidationError("Email đã được đăng kí!")
         try:
             validate_email(email)
         except:
-            raise forms.ValidationError("Email is invalid!")
+            raise forms.ValidationError("Email không hợp lệ!")
         return email
 
 
@@ -102,9 +118,9 @@ class UserResetForm(forms.Form):
         try:
             validate_email(uemail)
         except:
-            raise forms.ValidationError("Email is invalid")
+            raise forms.ValidationError("Email không hợp lệ")
         if get_users_email(uemail) is None:
-            raise forms.ValidationError("Email isn't registered")
+            raise forms.ValidationError("Email chưa đăng kí")
         return uemail
 
 
@@ -130,8 +146,8 @@ class ResetForm(forms.Form):
             if pwd1 == pwd2 and pwd1:
                 return pwd1
             else:
-                raise forms.ValidationError("Re-password does not match!")
-        raise forms.ValidationError("Password is invalid!")
+                raise forms.ValidationError("Mật khẩu không trùng khớp!")
+        raise forms.ValidationError("Mật khẩu không hợp lệ !")
 
 
 class PaymentForm(forms.Form):
