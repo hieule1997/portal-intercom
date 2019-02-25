@@ -195,3 +195,26 @@ def activate(request, uidb64, token):
         return render(request,'client/active_acc2.html',{'content': username})
     else:
         return render(request,'client/active_acc2.html',{'content': ' Đường đẫn không hợp lệ'}) 
+
+# Data user json
+def data_user_json(request):
+    data = {}
+    if request.user.is_authenticated:
+        user = MyUser.objects.get(id=request.user.id)
+        data.update({'id': user.id})
+        data.update({'fullname': user.fullname})
+        data.update({'email': user.email})
+        data.update({'phone': user.phone})
+        data.update({'company': user.company})
+        data.update({'address_register': user.addressRegister})
+        data.update({'director': user.director})
+        data.update({'tax_id': user.taxID})
+        data.update({'address1': user.address1})
+        data.update({'country': user.country})
+        data.update({'city': user.city})
+        data.update({'region': user.region})
+        data.update({'timezone': user.timezone})
+        data.update({'address2': user.address2})
+        data.update({'post_code': user.postCode})
+    
+    return JsonResponse(data, safe=False)

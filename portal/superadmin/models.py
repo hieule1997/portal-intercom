@@ -57,6 +57,18 @@ class MyUser(AbstractBaseUser):
     token_id = models.CharField(max_length=255, null=True)
     token_expired = models.DateTimeField(null=True)
     money=models.CharField(max_length=100, default="0")
+    phone=models.CharField(max_length=100, default='')
+    company=models.TextField(max_length=200, blank=True)
+    addressRegister=models.TextField(max_length=200, blank=True)
+    director=models.TextField(max_length=200, blank=True)
+    taxID=models.TextField(max_length=200, blank=True)
+    address1=models.TextField(max_length=200, blank=True)
+    country=models.TextField(max_length=200, blank=True)
+    city=models.TextField(max_length=200, blank=True)
+    region=models.TextField(max_length=200, blank=True)
+    timezone=models.CharField(max_length=100, default='0')
+    address2=models.TextField(max_length=200, blank=True)
+    postCode=models.CharField(max_length=200, blank=True)
 
     objects = MyUserManager()
 

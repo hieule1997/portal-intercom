@@ -92,7 +92,7 @@
                 <div class="box-header">
                     Dữ liệu cá nhân
                 </div>
-                <form action="" class="form-horizontal ng-pristine ng-valid" id="updateInfoForm" name="updateInfoForm">
+                <form action="" class="form-horizontal ng-pristine ng-valid" id="updateInfoForm" name="updateInfoForm" method="POST">
                     <div class="box white billing-box">
                         <div class="active">
                             <div class="row">
@@ -101,40 +101,40 @@
                                         <input name="firstname" type="text" class="form-control" value="" placeholder="Họ (*)">
                                     </div>
                                     <div class="form-group">
-                                        <input name="lastname" type="text" class="form-control" value="" placeholder="Tên (*)">
+                                        <input name="lastname" id="lastname" type="text" class="form-control" value="" placeholder="Tên (*)">
                                     </div>
                                     <div class="form-group">
                                         <input class="disabled" disabled id="email" class="form-control" name="email" style="background-color: #F7F7F9" type="text" value="" placeholder="Địa chỉ email (*):">
                                     </div>
                                     <div class="form-group">
-                                        <input name="phonenumber" type="text" class="form-control" value="" placeholder="Số điện thoại (*):">
+                                        <input name="phonenumber" id="phonenumber" type="text" class="form-control" value="" placeholder="Số điện thoại (*):">
                                     </div>
                                     <div class="form-group">
-                                        <input name="companyname" type="text" class="form-control" value="" placeholder="Công ty (không bắt buộc):">
+                                        <input name="companyname" id="companyname" type="text" class="form-control" value="" placeholder="Công ty (không bắt buộc):">
                                     </div>
                                     <div class="form-group">
-                                        <input name="dia_chi_dkkd" type="text" class="form-control" value="" placeholder="Địa chỉ đăng kí kinh doanh (không bắt buộc):">
+                                        <input name="dia_chi_dkkd" id="adress-register" type="text" class="form-control" value="" placeholder="Địa chỉ đăng kí kinh doanh (không bắt buộc):">
                                     </div>
                                     <div class="form-group">
-                                        <input name="ten_giam_doc" type="text" class="form-control" value="" placeholder="Tên giám đốc (không bắt buộc):">
+                                        <input name="ten_giam_doc" id="director" type="text" class="form-control" value="" placeholder="Tên giám đốc (không bắt buộc):">
                                     </div>
                                     <div class="form-group">
-                                        <input name="ma_so_thue" type="text" class="form-control" value="" placeholder="Mã số thuế (không bắt buộc):">
+                                        <input name="ma_so_thue" type="text" id="tax-id" class="form-control" value="" placeholder="Mã số thuế (không bắt buộc):">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input name="address1" type="text" value="Ha Noi" placeholder="Địa chỉ:">
+                                        <input name="address1" id="address1" type="text" value="" placeholder="Địa chỉ:">
                                     </div>
                                     <div class="form-group">
-                                        <select class="crs-country" name="country">
-                                            <option value="">
+                                        <select id="crs-country" class="crs-country" name="country">
+                                            <option value="0">
                                                 Quốc Gia
                                             </option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                         <input name="city" type="text" value="" placeholder="Thành phố:">
+                                         <input name="city" id="city" type="text" value="" placeholder="Thành phố:">
                                     </div>
                                     <div class="form-group">
                                         <select id="region" name="state">
@@ -157,10 +157,10 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <input name="address2" type="text" value="" placeholder="Địa chỉ 2:">
+                                        <input name="address2" id="address2" type="text" value="" placeholder="Địa chỉ 2:">
                                     </div>
                                     <div class="form-group">
-                                        <input name="postcode" type="text" value="" placeholder="Mã bưu điện:">
+                                        <input name="postcode" id="postcode" type="text" value="" placeholder="Mã bưu điện:">
                                     </div>
                                     <div class="form-group text-left">
                                         <button class="btn btn-success" id="btUpdate" type="submit">Cập nhật</button>
